@@ -1,6 +1,8 @@
 {
   config,
   pkgs,
+  hostname,
+  username,
   nix-software-center,
   nur,
   ...
@@ -40,7 +42,7 @@
 
   #services.udev.extraRules = ''KERNEL=="uinput", OWNER="rsh",MODE="0600" '';
 
-  networking.hostName = "nixos";
+  networking.hostName = "${hostname}";
 
   networking.networkmanager.enable = true;
 
@@ -88,14 +90,14 @@
 
   # services.xserver.libinput.enable = true; # default true
 
-  users.users.rsh = {
+  users.users.${username} = {
     isNormalUser = true;
     shell = pkgs.fish;
 
     #passwd
     #initialPassword = "rr";
 
-    description = "rsh";
+    description = "${username}";
     extraGroups = ["networkmanager" "wheel"];
 
     packages = with pkgs; [
@@ -113,11 +115,11 @@
   };
 
   # Enable automatic login for the user.
-  services.getty.autologinUser = "rsh";
+  services.getty.autologinUser = "${username}";
 
   # DisplayManager
   services.displayManager.autoLogin.enable = true;
-  services.displayManager.autoLogin.user = "rsh";
+  services.displayManager.autoLogin.user = "${username}";
 
   # Install
   programs.firefox.enable = true;

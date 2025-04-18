@@ -36,34 +36,66 @@
     nur,
     ...
   }: let
-    system = "x86_64-linux";
+    var = import ./var.nix;
+    system = var.system;
+    username = var.username;
+    hostname = var.hostname;
+    keyboard-path = var.keyboard-path;
+    gh-email = var.gh-email;
+    gh-username = var.gh-username;
 
     overlays = [nur.overlays.default];
 
     pkgs = import nixpkgs {
       inherit system overlays;
-
       config.allowUnfree = true;
     };
   in {
-    nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.${hostname} = nixpkgs.lib.nixosSystem {
       inherit system;
+
       modules = [
         ./nixos/configuration.nix
         home-manager.nixosModules.home-manager
         stylix.nixosModules.stylix
       ];
+
       specialArgs = {
-        inherit pkgs stylix nixvim nix-software-center nur home-manager;
+        # variables for nixos
+        inherit
+          pkgs
+          stylix
+          nixvim
+          nix-software-center
+          nur
+          home-manager
+          username
+          hostname
+          keyboard-path
+          gh-email
+          gh-username
+          ;
       };
     };
 
-    homeConfigurations."rsh@nixos" = home-manager.lib.homeManagerConfiguration {
+    homeConfigurations."${username}@${hostname}" = home-manager.lib.homeManagerConfiguration {
       inherit pkgs;
 
       extraSpecialArgs = {
-        inherit pkgs stylix nixvim nix-software-center home-manager;
+        # variables for home-manager
+        inherit
+          pkgs
+          stylix
+          nixvim
+          nix-software-center
+          home-manager
+          username
+          hostname
+          gh-email
+          gh-username
+          ;
       };
+
       modules = [
         ./home-manager/home.nix
         stylix.homeManagerModules.stylix

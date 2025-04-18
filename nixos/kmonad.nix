@@ -1,15 +1,17 @@
 {
   config,
   pkgs,
+  username,
+  keyboard-path,
   ...
 }: let
-  kbdpath = "/dev/input/by-path/platform-i8042-serio-0-event-kbd";
+  kbdpath = "${keyboard-path}";
 in {
   environment.systemPackages = with pkgs; [
     kmonad
   ];
 
-  services.udev.extraRules = ''KERNEL=="uinput", OWNER="rsh",MODE="0600" '';
+  services.udev.extraRules = ''KERNEL=="uinput", OWNER="${username}",MODE="0600" '';
   users.users.rsh.extraGroups = ["input"];
 
   services.kmonad = {
