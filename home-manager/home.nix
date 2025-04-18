@@ -33,6 +33,7 @@
     userName = "${gh-username}";
     userEmail = "${gh-email}";
     extraConfig = {
+      credential.helper = "store";
       url."https://github.com/" = {
         insteadOf = ["gh:" "github:"];
       };

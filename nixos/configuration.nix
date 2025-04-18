@@ -124,7 +124,6 @@
   # Install
   programs.firefox.enable = true;
   programs.fish.enable = true;
-  programs.git.config.credential.helper = "store";
 
   nixpkgs.config.allowUnfree = true;
 
