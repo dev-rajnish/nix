@@ -1,0 +1,30 @@
+name: Test NixOS and Home Manager Configuration
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout the repository
+      - name: Checkout repo
+        uses: actions/checkout@v2
+
+      # Step 2: Set up Nix
+      - name: Set up Nix
+        uses: cachix/install-nix-action@v10
+
+      # Step 3: Build NixOS configuration
+      - name: Build NixOS configuration
+        run: |
+          nix build .#nixosConfigurations.your-system-name.config.system.build.toplevel
+
+      # Step 4: Apply Home Manager configuration
+      - name: Apply Home Manager configuration
+        run: |
+          nix shell github:nix-community/home-manager
+          home-manager switch --flake .#your-home-manager-config
