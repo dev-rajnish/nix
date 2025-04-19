@@ -6,8 +6,7 @@
   nix-software-center,
   nur,
   ...
-}:
-{
+}: {
   imports = [
     ./hardware-configuration.nix
     ./kmonad.nix
@@ -35,7 +34,7 @@
   ];
 
   xdg.portal.enable = true;
-  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-wlr ];
+  xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-wlr];
 
   services.udisks2.enable = true;
 
