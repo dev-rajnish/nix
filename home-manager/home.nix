@@ -2,7 +2,7 @@
   config,
   pkgs,
   username,
-   ...
+  ...
 }: {
   imports = [
     ./yazi.nix
@@ -11,8 +11,8 @@
     ./home-pkg.nix
     ./wezterm.nix
     ./waypaper.nix
+    ./starship.nix
   ];
-
   home = {
     username = "${username}";
     homeDirectory = "/home/${username}";

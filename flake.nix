@@ -1,4 +1,3 @@
-
 {
   description = "Lappy NixOS Configuration";
 
@@ -10,7 +9,7 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     stylix.url = "github:danth/stylix";
-    nixvim.url = "github:nix-community/nixvim";
+    nixvim.url = "github:dc-tec/nixvim";
     nix-software-center.url = "github:snowfallorg/nix-software-center";
 
     nur.url = "github:nix-community/NUR";
@@ -35,20 +34,20 @@
     keyboard-path = var.keyboard-path;
     gh-email = var.gh-email;
     gh-username = var.gh-username;
-     
+
     sharedArgs = {
-        inherit
-          stylix
-          nixvim
-          nix-software-center
-          nur
-          username
-          hostname
-          keyboard-path
-          gh-email
-          gh-username;
- 
-};
+      inherit
+        stylix
+        nixvim
+        nix-software-center
+        nur
+        username
+        hostname
+        keyboard-path
+        gh-email
+        gh-username
+        ;
+    };
 
     overlays = [nur.overlays.default];
 
@@ -70,7 +69,7 @@
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
           home-manager.users.${username} = import ./home-manager/home.nix;
-          
+          home-manager.backupFileExtension = "backup";
           home-manager.extraSpecialArgs = sharedArgs;
         }
       ];

@@ -6,14 +6,14 @@
   nix-software-center,
   nur,
   ...
-}: {
+}:
+{
   imports = [
     ./hardware-configuration.nix
     ./kmonad.nix
     ./nix-software-center.nix
     ./services.nix
     ./system-pkgs.nix
-    ./shell.nix
     ./nix-settings.nix
     ./hyprland.nix
   ];
@@ -28,10 +28,14 @@
   boot.tmp.useTmpfs = true;
   services.fstrim.enable = true;
   services.timesyncd.enable = true;
-  boot.kernelParams = ["quiet" "loglevel=3" "mitigations=off"];
+  boot.kernelParams = [
+    "quiet"
+    "loglevel=3"
+    "mitigations=off"
+  ];
 
   xdg.portal.enable = true;
-  xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-wlr];
+  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-wlr ];
 
   services.udisks2.enable = true;
 
@@ -69,12 +73,16 @@
   users.users.${username} = {
     isNormalUser = true;
     shell = pkgs.fish;
-
     #passwd
     #initialPassword = "rr";
 
     description = "${username}";
-    extraGroups = ["networkmanager" "wheel" "video" "render"];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "video"
+      "render"
+    ];
   };
   #
   system.stateVersion = "24.11";

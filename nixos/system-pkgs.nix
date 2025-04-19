@@ -2,15 +2,16 @@
   config,
   pkgs,
   username,
+  nixvim,
   ...
 }: {
   fonts.packages = [
-    #   pkgs.nerd-fonts.FiraCode
+    pkgs.nerd-fonts.fira-code
     pkgs.nerd-fonts.hack
   ];
   # Install
   programs.firefox.enable = true;
-  
+  programs.fish.enable = true;
   users.users.${username} = {
     packages = with pkgs; [
       nodejs
@@ -21,7 +22,7 @@
       universal-android-debloater
       android-tools
       google-chrome
-      pkgs. nur.repos.mic92.hello-nur
+      nur.repos.mic92.hello-nur
       nerdfetch
       wofi
       bluez
@@ -41,10 +42,15 @@
       cmatrix
     ];
   };
-
+  environment.variables = {
+    EDITOR = "nvim";
+    SHELL = "fish";
+    TERM = "wezterm";
+  };
   environment.systemPackages = with pkgs; [
-home-manager 
-   powertop
+    nixvim.packages.x86_64-linux.default
+    home-manager
+    powertop
     git
     gnupg
     curl
