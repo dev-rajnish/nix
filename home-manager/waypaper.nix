@@ -7,19 +7,14 @@
 {
   home.packages = with pkgs; [
     waypaper
-    swww
-    wl-clipboard
-    cliphist
-    nwg-clipman
-    clipman
   ];
 
   home.file.".config/waypaper/config.ini".text = ''
     [Settings]
     language = en
-    folder = ~/.config/walls
+    folder = ~/walls
     monitors = All
-    wallpaper = ~/.config/walls/beach.png
+    wallpaper = ~/walls/981849.png
     backend = swww
     fill = fill
     sort = name

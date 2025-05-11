@@ -8,10 +8,11 @@
   fonts.packages = [
     pkgs.nerd-fonts.fira-code
     pkgs.nerd-fonts.hack
+    pkgs.nerd-fonts.symbols-only
   ];
   # Install
   programs.firefox.enable = true;
-  programs.fish.enable = true;
+  # programs.fish.enable = true;
   users.users.${username} = {
     packages = with pkgs; [
       nodejs
@@ -41,10 +42,12 @@
       cbonsai
       cmatrix
     ];
+
+    ignoreShellProgramCheck = true;
   };
   environment.variables = {
     EDITOR = "nvim";
-    SHELL = "fish";
+    #SHELL = "fish";
     TERM = "wezterm";
   };
   environment.systemPackages = with pkgs; [

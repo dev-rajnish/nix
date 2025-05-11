@@ -11,7 +11,9 @@
     ./home-pkg.nix
     ./wezterm.nix
     ./waypaper.nix
-    ./starship.nix
+    ./waybar/waybar.nix
+    ./shell.nix
+    ./config/config.nix
   ];
   home = {
     username = "${username}";
