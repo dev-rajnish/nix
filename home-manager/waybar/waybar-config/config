@@ -55,7 +55,7 @@
 "custom/wallpaper":{
         "tooltip":false,
         "format":"󰸉 ",
-        "on-click": "bash ~/.config/waybar/custom/random-wallpaper.sh"
+        "on-click": "waypaper"
 },
 
 "idle_inhibitor": {
@@ -132,7 +132,7 @@
 		"scroll-step": 5,
 		"format-muted": "󰸈 {volume}%",
 		"on-click":"pactl set-sink-mute @DEFAULT_SINK@ toggle",
-    "on-click-right": "pavucontrol",
+    "on-click-right": "pwvucontrol",
 		"format-icons": ["󰕿 ", "󰖀 ", "󰕾 "]
 
   },

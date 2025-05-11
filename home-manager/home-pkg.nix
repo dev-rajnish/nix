@@ -4,6 +4,33 @@
   ...
 }: {
   home.packages = with pkgs; [
+    nodejs
+    deno
+    vscodium
+    pipes
+    ventoy-full-qt
+    universal-android-debloater
+    android-tools
+    google-chrome
+    nur.repos.mic92.hello-nur
+    nerdfetch
+    wofi
+    bluez
+    hyprsunset
+    hypridle
+    rofi-wayland
+    satty
+    waybar
+    swaynotificationcenter
+    pwvucontrol
+    brightnessctl
+    hyprshot
+    wezterm
+    nwg-displays
+    process-viewer
+    cbonsai
+    cmatrix
+
     fossil
     swww
     wl-clipboard
@@ -12,5 +39,7 @@
     clipman
     llama-cpp
     lmstudio
+    tela-circle-icon-theme
+    eza
   ];
 }

@@ -15,6 +15,8 @@
     ./system-pkgs.nix
     ./nix-settings.nix
     ./hyprland.nix
+    ./users.nix
+    ./user-pkgs.nix
   ];
 
   boot.loader.systemd-boot.enable = true;
@@ -69,20 +71,6 @@
     LC_TIME = "en_IN";
   };
 
-  users.users.${username} = {
-    isNormalUser = true;
-    shell = pkgs.fish;
-    #passwd
-    #initialPassword = "rr";
-
-    description = "${username}";
-    extraGroups = [
-      "networkmanager"
-      "wheel"
-      "video"
-      "render"
-    ];
-  };
   #
   system.stateVersion = "24.11";
 }

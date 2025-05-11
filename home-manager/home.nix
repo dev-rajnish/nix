@@ -9,6 +9,7 @@
     ./stylix.nix
     ./git.nix
     ./home-pkg.nix
+    ./wofi.nix
     ./wezterm.nix
     ./waypaper.nix
     ./waybar/waybar.nix
@@ -18,6 +19,10 @@
   home = {
     username = "${username}";
     homeDirectory = "/home/${username}";
+    sessionVariables = {
+      EDITOR = "nvim";
+      SHELL = "fish";
+    };
   };
 
   # Enable home-manager

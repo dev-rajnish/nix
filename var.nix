@@ -5,5 +5,5 @@
   # keyboard path
   keyboard-path = "/dev/input/by-path/platform-i8042-serio-0-event-kbd";
   gh-username = "dev-rajnish";
-  gh-email = "devrajnish@proton.me";
+  gh-email = "dev.rajnish@proton.me";
 }
