@@ -1,0 +1,4 @@
+- [x] clean
+- [x] modular
+- [ ] nixvim module
+- [ ] firefox module
