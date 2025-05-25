@@ -1,4 +1,5 @@
 - [x] clean
 - [x] modular
+- [ ] move sys-pkgs to home-manager/pkgs
 - [ ] nixvim module
 - [ ] firefox module
