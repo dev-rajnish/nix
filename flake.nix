@@ -18,7 +18,7 @@
     nur.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = {...} @ inputs: let
+  outputs = {self, ...} @ inputs: let
     var-file = import ./var.nix;
 
     sharedArgs = {
@@ -47,14 +47,8 @@
 
     overlays = [nur.overlays.default];
 
-    pkgs = import nixpkgs {
-      inherit system overlays;
-      config.allowUnfree = true;
-    };
-
     inherit
       (sharedArgs) # directly using variables in this file
-      self
       nixpkgs
       nur
       system
@@ -63,6 +57,10 @@
       stylix
       home-manager
       ;
+    pkgs = import nixpkgs {
+      inherit system overlays;
+      config.allowUnfree = true;
+    };
   in {
     nixosConfigurations.${hostname} = nixpkgs.lib.nixosSystem {
       inherit system pkgs;
@@ -79,6 +77,17 @@
           home-manager.backupFileExtension = "backup";
           home-manager.extraSpecialArgs = sharedArgs;
         }
+      ];
+    };
+
+    #home-manager standalone
+    homeConfigurations."${username}" = home-manager.lib.homeManagerConfiguration {
+      inherit pkgs;
+      extraSpecialArgs = sharedArgs;
+
+      modules = [
+        ./home-manager/home.nix
+        stylix.homeModules.stylix
       ];
     };
 
