@@ -11,20 +11,19 @@ let
     ./sys-pkgs
   ];
 
-  readNixFilesFrom =
-    folder:
-    let
-      dir = builtins.readDir folder;
-      filterCaches = key: value: value == "regular" && lib.hasSuffix ".nix" key;
-      toImport = name: _: folder + ("/" + name);
-    in
+  readNixFilesFrom = folder: let
+    dir = builtins.readDir folder;
+    filterCaches = key: value: value == "regular" && lib.hasSuffix ".nix" key;
+    toImport = name: _: folder + ("/" + name);
+  in
     lib.mapAttrsToList toImport (lib.filterAttrs filterCaches dir);
   imports = lib.flatten (map readNixFilesFrom folders);
-in
-{
-  imports = [
-    ./hardware-configuration.nix
-  ] ++ imports;
+in {
+  imports =
+    [
+      ./hardware-configuration.nix
+    ]
+    ++ imports;
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -43,7 +42,7 @@ in
   ];
 
   xdg.portal.enable = true;
-  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-wlr ];
+  xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-wlr];
 
   services.udisks2.enable = true;
 
