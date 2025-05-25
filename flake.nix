@@ -1,5 +1,5 @@
 {
-  description = "Lappy NixOS Configuration";
+  description = "NixOS Configuration using flake";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
@@ -9,43 +9,39 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     stylix.url = "github:danth/stylix";
+
     nixvim.url = "github:dc-tec/nixvim";
+
     nix-software-center.url = "github:snowfallorg/nix-software-center";
 
     nur.url = "github:nix-community/NUR";
     nur.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = {
-    self,
-    nixpkgs,
-    nixpkgs-stable,
-    home-manager,
-    stylix,
-    nixvim,
-    nix-software-center,
-    nur,
-    ...
-  }: let
-    var = import ./var.nix;
-    system = var.system;
-    username = var.username;
-    hostname = var.hostname;
-    keyboard-path = var.keyboard-path;
-    gh-email = var.gh-email;
-    gh-username = var.gh-username;
+  outputs = {...} @ inputs: let
+    var-file = import ./var.nix;
 
     sharedArgs = {
+      # use in other files at top {hostname}: to directly access variable just by name like system
       inherit
-        stylix
-        nixvim
-        nix-software-center
-        nur
+        (var-file) # from var.nix files
+        system
         username
         hostname
         keyboard-path
         gh-email
         gh-username
+        ;
+      inherit
+        (inputs) # from inputs
+        self
+        nixpkgs
+        stylix
+        home-manager
+        nixpkgs-unstable
+        nixvim
+        nix-software-center
+        nur
         ;
     };
 
@@ -55,10 +51,21 @@
       inherit system overlays;
       config.allowUnfree = true;
     };
+
+    inherit
+      (sharedArgs) # directly using variables in this file
+      self
+      nixpkgs
+      nur
+      system
+      username
+      hostname
+      stylix
+      home-manager
+      ;
   in {
     nixosConfigurations.${hostname} = nixpkgs.lib.nixosSystem {
       inherit system pkgs;
-
       specialArgs = sharedArgs;
 
       modules = [

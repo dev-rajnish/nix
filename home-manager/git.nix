@@ -1,7 +1,4 @@
 {
-  config,
-  pkgs,
-  username,
   gh-email,
   gh-username,
   ...
@@ -16,7 +13,10 @@
         helper = "store";
       };
       url."https://github.com/" = {
-        insteadOf = ["gh:" "github:"];
+        insteadOf = [
+          "gh:"
+          "github:"
+        ];
       };
     };
   };

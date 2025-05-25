@@ -1,8 +1,4 @@
 {
-  config,
-  pkg,
-  ...
-}: {
   programs.wezterm.enable = true;
 
   programs.wezterm.extraConfig =

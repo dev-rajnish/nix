@@ -1,9 +1,4 @@
-{
-  config,
-  pkgs,
-  username,
-  ...
-}: {
+{username, ...}: {
   imports = [
     ./yazi.nix
     ./stylix.nix

@@ -1,5 +1,4 @@
 {
-  config,
   pkgs,
   username,
   keyboard-path,
@@ -21,9 +20,7 @@ in {
     keyboards."my-laptop" = {
       device = kbdpath;
       config =
-        /*
-        lisp
-        */
+        # lisp
         ''
 
           ( defcfg

@@ -1,10 +1,6 @@
 {
-  config,
   pkgs,
   hostname,
-  username,
-  nix-software-center,
-  nur,
   ...
 }: {
   imports = [

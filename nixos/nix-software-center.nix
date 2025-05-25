@@ -1,5 +1,4 @@
 {
-  config,
   pkgs,
   nix-software-center,
   ...

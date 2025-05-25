@@ -1,8 +1,4 @@
-{
-  config,
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   programs.yazi.enableFishIntegration = true;
 
   programs.yazi.package = pkgs.yazi;

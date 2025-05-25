@@ -1,14 +1,9 @@
-{
-  config,
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   home.packages = with pkgs; [
     nodejs
     deno
     vscodium
     pipes
-    ventoy-full-qt
     universal-android-debloater
     android-tools
     google-chrome
