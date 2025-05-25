@@ -1,31 +1,48 @@
-{username, ...}: {
-  imports = [
-    ./yazi.nix
-    ./stylix.nix
-    ./git.nix
-    ./home-pkg.nix
-    ./wofi.nix
-    ./wezterm.nix
-    ./waypaper.nix
-    ./waybar/waybar.nix
-    ./shell.nix
-    ./config/config.nix
+{
+  lib,
+  username,
+  ...
+}:
+# SINGLE FOLDER
+/*
+let
+  folder = ./modules;
+  toImport = name: value: folder + ("/" + name);
+  filterCaches = key: value: value == "regular" && lib.hasSuffix ".nix" key;
+  imports = lib.mapAttrsToList toImport (lib.filterAttrs filterCaches (builtins.readDir folder));
+in
+{
+  inherit imports;
+*/
+#MULTIPLE FOLDERS
+let
+  folders = [
+    ./modules
+    ./pkgs
   ];
+
+  readNixFilesFrom = folder: let
+    dir = builtins.readDir folder;
+    filterCaches = key: value: value == "regular" && lib.hasSuffix ".nix" key;
+    toImport = name: _: folder + ("/" + name);
+  in
+    lib.mapAttrsToList toImport (lib.filterAttrs filterCaches dir);
+  imports = lib.flatten (map readNixFilesFrom folders);
+in {
+  imports = imports;
+
+  programs.home-manager.enable = true;
+
   home = {
+    stateVersion = "25.05";
     username = "${username}";
     homeDirectory = "/home/${username}";
+
     sessionVariables = {
       EDITOR = "nvim";
       SHELL = "fish";
     };
   };
 
-  # Enable home-manager
-  programs.home-manager.enable = true;
-
-  # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
-
-  # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
-  home.stateVersion = "25.05";
 }
