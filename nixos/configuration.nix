@@ -2,6 +2,7 @@
   lib,
   pkgs,
   hostname,
+  system-version,
   ...
 }:
 #MULTIPLE FOLDERS
@@ -19,11 +20,7 @@ let
     lib.mapAttrsToList toImport (lib.filterAttrs filterCaches dir);
   imports = lib.flatten (map readNixFilesFrom folders);
 in {
-  imports =
-    [
-      ./hardware-configuration.nix
-    ]
-    ++ imports;
+  imports = [./hardware-configuration.nix] ++ imports;
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -63,7 +60,7 @@ in {
 
   time.timeZone = "Asia/Kolkata";
 
-  i18n.defaultLocale = "en_IN";
+  i18n.defaultLocale = "en_US.UTF-8";
 
   i18n.extraLocaleSettings = {
     LC_ADDRESS = "en_IN";
@@ -78,5 +75,5 @@ in {
   };
 
   #
-  system.stateVersion = "24.11";
+  system.stateVersion = "${system-version}";
 }

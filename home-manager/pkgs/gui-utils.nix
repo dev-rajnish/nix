@@ -3,5 +3,7 @@
     nwg-displays
     process-viewer
     nwg-clipman
+
+    gparted
   ];
 }

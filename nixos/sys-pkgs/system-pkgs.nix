@@ -1,8 +1,4 @@
-{
-  pkgs,
-  nixvim,
-  ...
-}: {
+{pkgs, ...}: {
   fonts.packages = [
     pkgs.nerd-fonts.fira-code
     pkgs.nerd-fonts.hack
@@ -15,31 +11,13 @@
   environment.variables = {};
 
   environment.systemPackages = with pkgs; [
-    nixvim.packages.x86_64-linux.default
     home-manager
-    powertop
-    git
-    gnupg
-    curl
-    wget
-    unzip
-    htop
-    jq
-    ripgrep
-    fd
-    gcc
-    gdb
-    strace
-    lldb
-    vim
-    fastfetch
-    htop
+    nixos-rebuild-ng
     nixpkgs-fmt
     nix-tree
     nix-init
     cachix
-    gparted
-    bat
     nh
+    jq
   ];
 }

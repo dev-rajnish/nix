@@ -1,6 +1,7 @@
 {
   lib,
   username,
+  home-version,
   ...
 }:
 # SINGLE FOLDER
@@ -34,7 +35,7 @@ in {
   programs.home-manager.enable = true;
 
   home = {
-    stateVersion = "25.05";
+    stateVersion = "${home-version}";
     username = "${username}";
     homeDirectory = "/home/${username}";
 

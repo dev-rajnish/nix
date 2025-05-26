@@ -26,6 +26,8 @@
       inherit
         (var-file) # from var.nix files
         system
+        system-version
+        home-version
         username
         hostname
         keyboard-path
