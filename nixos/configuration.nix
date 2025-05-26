@@ -54,9 +54,14 @@ in {
     MaxRetentionSec=1month
   '';
 
-  networking.hostName = "${hostname}";
+  networking = {
+    hostName = "${hostname}";
 
-  networking.networkmanager.enable = true;
+    networkmanager = {
+      enable = true;
+      wifi.backend = "wpa_supplicant";
+    };
+  };
 
   time.timeZone = "Asia/Kolkata";
 

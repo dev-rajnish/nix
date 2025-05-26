@@ -17,6 +17,13 @@
     nix-tree
     nix-init
     cachix
+    nix-du
+    nix-web
+    nix-btm
+    nixtract
+    nix-index
+    nix-update
+    nix-search-tv
     nh
     jq
   ];

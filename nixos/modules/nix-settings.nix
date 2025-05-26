@@ -5,7 +5,7 @@
 
   nix.settings = {
     max-jobs = "auto";
-    cores = 0;
+    cores = 10;
     substituters = [
       "https://cache.nixos.org"
       "https://nix-community.cachix.org"

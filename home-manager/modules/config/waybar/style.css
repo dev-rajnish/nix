@@ -32,7 +32,7 @@ window#waybar.hidden {
   border-radius: 0px;
   margin-right: 5px;
   padding-left: 8px;
-  padding-right:  8px;
+  padding-right: 8px;
 }
 
 #workspaces button.active {
@@ -177,5 +177,13 @@ window#waybar.hidden {
   font-size: 20px;
   transition: none;
   color: #f2cdcd;
+  border-radius: 0px;
+}
+#custom-clipboard {
+  padding-left: 10px;
+  padding-right: 10px;
+  transition: none;
+  color: #f8bd96;
+  border-bottom: 2px solid #f8bd96;
   border-radius: 0px;
 }
