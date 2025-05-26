@@ -1,4 +1,5 @@
-{...}: {
+{ ... }:
+{
   programs.fish = {
     enable = true;
     shellAliases = {
@@ -6,7 +7,8 @@
       vim = "nvim";
       edit = "nvim (fzf)";
       e = "edit";
-      #ll = "ls -alF";
+      ls = "ls -a1";
+      ll = "ll -al";
       h = "Hyprland";
       y = "yy";
       x = "clear";
