@@ -2,7 +2,7 @@
   home.packages = with pkgs; [
     pipes
     cmatrix
-    oneko
+    # oneko
     cbonsai
     toilet
     fortune

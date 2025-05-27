@@ -33,6 +33,7 @@ in {
   imports = imports;
 
   programs.home-manager.enable = true;
+  programs.man.enable = false;
 
   home = {
     stateVersion = "${home-version}";
@@ -42,6 +43,7 @@ in {
     sessionVariables = {
       EDITOR = "nvim";
       SHELL = "fish";
+      MAN_DISABLE_CACHE = 1;
     };
   };
 

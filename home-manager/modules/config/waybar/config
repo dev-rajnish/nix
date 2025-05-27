@@ -74,12 +74,8 @@
 
   "network": {
 	  "tooltip": false,
-	  "format-wifi": {
-      "connected": "󰤥  {essid}",
-      "disconnected":"connect",
-      },
-	  "format-ethernet": "",
-    "on-click" : "wezterm wifi-connect "
+	  "format-wifi": "󰤥  {essid}",
+	  "format-ethernet": ""
 	},
 
 "backlight": {
@@ -138,7 +134,7 @@
   "pulseaudio": {
     "format":"{icon}{volume}%",
 		"tooltip": false,
-		"scroll-step": 5,
+		"scroll-step": 1,
 		"format-muted": "󰸈 {volume}%",
 		"on-click":"pactl set-sink-mute @DEFAULT_SINK@ toggle",
     "on-click-right": "pwvucontrol",
