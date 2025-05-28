@@ -6,8 +6,8 @@
       vim = "nvim";
       edit = "nvim (fzf)";
       e = "edit";
-      ls = "ls -a1";
-      ll = "ll -al";
+      #ls = "ls -a1";
+      #ll = "ll -al";
       h = "Hyprland";
       y = "yy";
       x = "clear";

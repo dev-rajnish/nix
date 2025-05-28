@@ -10,8 +10,9 @@ in {
     kmonad
   ];
 
+  hardware.uinput.enable = true;
   services.udev.extraRules = ''KERNEL=="uinput", OWNER="${username}",MODE="0600" '';
-  users.users.rsh.extraGroups = ["input"];
+  users.users.${username}.extraGroups = ["input"];
 
   services.kmonad = {
     enable = true;

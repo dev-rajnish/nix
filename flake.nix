@@ -12,10 +12,10 @@
 
     nixvim.url = "github:dc-tec/nixvim";
 
-    nix-software-center.url = "github:snowfallorg/nix-software-center";
+    #nix-software-center.url = "github:snowfallorg/nix-software-center";
 
-    nur.url = "github:nix-community/NUR";
-    nur.inputs.nixpkgs.follows = "nixpkgs";
+    #nur.url = "github:nix-community/NUR";
+    #nur.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = {self, ...} @ inputs: let
@@ -47,22 +47,20 @@
         ;
     };
 
-    overlays = [nur.overlays.default];
+    pkgs = import nixpkgs {
+      inherit system;
+      config.allowUnfree = true;
+    };
 
     inherit
       (sharedArgs) # directly using variables in this file
       nixpkgs
-      nur
       system
       username
       hostname
       stylix
       home-manager
       ;
-    pkgs = import nixpkgs {
-      inherit system overlays;
-      config.allowUnfree = true;
-    };
   in {
     nixosConfigurations.${hostname} = nixpkgs.lib.nixosSystem {
       inherit system pkgs;
@@ -70,6 +68,7 @@
 
       modules = [
         ./nixos/configuration.nix
+        # nixpkgs.nixosModules.readOnlyPkgs
         stylix.nixosModules.stylix
         home-manager.nixosModules.home-manager
         {

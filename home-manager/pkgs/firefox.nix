@@ -1,5 +1,7 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
-    pwvucontrol
   ];
+
+  # Install
+  programs.firefox.enable = true;
 }

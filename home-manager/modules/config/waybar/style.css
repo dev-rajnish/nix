@@ -135,7 +135,7 @@ window#waybar.hidden {
   padding-right: 10px;
   transition: none;
   color: #b5e8e0;
-  background: #161320;
+  background: transparent;
 }
 
 #custom-power {

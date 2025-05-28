@@ -1,0 +1,10 @@
+
+# ~/.config/hypr/hyprspace.toml
+
+[general]
+layout = "grid"
+spaces = 6
+gap = 30
+
+[keybinds]
+open = "ALT, TAB"

@@ -3,6 +3,6 @@
     wl-clipboard
     nwg-clipman
     cliphist
-    clipman
+    #clipman
   ];
 }

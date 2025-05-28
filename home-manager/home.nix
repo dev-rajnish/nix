@@ -4,20 +4,10 @@
   home-version,
   ...
 }:
-# SINGLE FOLDER
-/*
-let
-  folder = ./modules;
-  toImport = name: value: folder + ("/" + name);
-  filterCaches = key: value: value == "regular" && lib.hasSuffix ".nix" key;
-  imports = lib.mapAttrsToList toImport (lib.filterAttrs filterCaches (builtins.readDir folder));
-in
-{
-  inherit imports;
-*/
 #MULTIPLE FOLDERS
 let
   folders = [
+    ./hyprland
     ./modules
     ./pkgs
   ];
@@ -30,10 +20,14 @@ let
     lib.mapAttrsToList toImport (lib.filterAttrs filterCaches dir);
   imports = lib.flatten (map readNixFilesFrom folders);
 in {
-  imports = imports;
+  ## config start
+  inherit imports;
 
-  programs.home-manager.enable = true;
-  programs.man.enable = false;
+  programs = {
+    home-manager.enable = true;
+    man.enable = false;
+  };
+  manual.manpages.enable = false;
 
   home = {
     stateVersion = "${home-version}";
@@ -49,3 +43,15 @@ in {
 
   systemd.user.startServices = "sd-switch";
 }
+# SINGLE FOLDER
+/*
+let
+  folder = ./modules;
+  toImport = name: value: folder + ("/" + name);
+  filterCaches = key: value: value == "regular" && lib.hasSuffix ".nix" key;
+  imports = lib.mapAttrsToList toImport (lib.filterAttrs filterCaches (builtins.readDir folder));
+in
+{
+  inherit imports;
+*/
+

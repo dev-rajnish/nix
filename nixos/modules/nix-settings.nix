@@ -1,8 +1,13 @@
-{
-  #nixpkgs.config.allowUnfree = true;
+{system, ...}: {
+  # nixpkgs.config.allowUnfree = true;
 
   nix.settings.experimental-features = "nix-command flakes";
 
+  nixpkgs.localSystem = {
+    # Optional, for reproducibility and limiting bloat
+    inherit system;
+    gcc.arch = "native";
+  };
   nix.settings = {
     max-jobs = "auto";
     cores = 10;

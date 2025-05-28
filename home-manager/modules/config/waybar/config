@@ -17,6 +17,7 @@
 
   "modules-right":
   [
+  "tray",
   "custom/clipboard",
   "custom/swaync",
   "custom/wallpaper",
@@ -27,8 +28,7 @@
   "battery",
   "backlight",
   "pulseaudio",
-  "clock",
-  "tray"
+  "clock"
   ],
 
 
